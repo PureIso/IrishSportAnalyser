@@ -1,0 +1,22 @@
+/** Add css rules here for your application. */
+
+.titleLabel {
+    font-size: 18px;
+    font-family: Georgia,serif;
+    font-weight: bold;
+}
+.errorLabel {
+    color: Maroon;
+}
+.topLabel {
+    color: royalblue;
+    border-color: black;
+    border-bottom: thin solid;
+    font-weight: bold;
+}
+.panelBorder {
+    border: thin solid;
+}
+.background {
+    background-color: lightcyan;
+}
