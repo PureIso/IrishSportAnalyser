@@ -81,7 +81,7 @@ public class EnterResultsForm {
     public EnterResultsForm()
     {
         this.rootPanel = RootPanel.get();
-        this.rootPanel.setStyleName(".background");
+        this.rootPanel.setStyleName("background");
         StandardLayoutForm layout = new StandardLayoutForm(this.rootPanel, "770px");
         enterResultsFormDesign();
 
@@ -358,12 +358,12 @@ public class EnterResultsForm {
         absolutePanel.setSize("770px", "560px");
 
         AbsolutePanel selectionPanel = new AbsolutePanel();
-        selectionPanel.setStyleName(".panelBorder");
+        selectionPanel.setStyleName("panelBorder");
         absolutePanel.add(selectionPanel, 0, 0);
         selectionPanel.setSize("763px", "127px");
 
         Label lblSelectCompetition = new Label("Competition Details");
-        lblSelectCompetition.setStyleName(".topLabel");
+        lblSelectCompetition.setStyleName("topLabel");
         lblSelectCompetition.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
         selectionPanel.add(lblSelectCompetition, 0, 0);
         lblSelectCompetition.setSize("763px", "18px");
@@ -460,12 +460,12 @@ public class EnterResultsForm {
         this.eventListBox.setSize("125px", "22px");
 
         AbsolutePanel enterResultPanel = new AbsolutePanel();
-        enterResultPanel.setStyleName(".panelBorder");
+        enterResultPanel.setStyleName("panelBorder");
         absolutePanel.add(enterResultPanel, 44, 181);
         enterResultPanel.setSize("372px", "367px");
 
         Label lblEventResults = new Label("Event Results");
-        lblEventResults.setStyleName(".topLabel");
+        lblEventResults.setStyleName("topLabel");
         lblEventResults.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
         enterResultPanel.add(lblEventResults, 0, 0);
         lblEventResults.setSize("372px", "18px");
@@ -640,33 +640,33 @@ public class EnterResultsForm {
         this.clearButton.setSize("81px", "30px");
 
         Label lblpleaseSelectCompetition = new Label("*Please select competition details.");
-        lblpleaseSelectCompetition.setStyleName(".errorLabel");
+        lblpleaseSelectCompetition.setStyleName("errorLabel");
         enterResultPanel.add(lblpleaseSelectCompetition, 80, 348);
 
         AbsolutePanel exampleResultPanel = new AbsolutePanel();
-        exampleResultPanel.setStyleName(".panelBorder");
+        exampleResultPanel.setStyleName("panelBorder");
         absolutePanel.add(exampleResultPanel, 0, 136);
         exampleResultPanel.setSize("763px", "39px");
 
         Label lblSamplePerformance = new Label("Sample Performance:   100m = 11.60,  800m = 1:59:00, Long Jump = 6.20, Decathlon = 5000");
         lblSamplePerformance.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-        lblSamplePerformance.setStyleName(".errorLabel");
+        lblSamplePerformance.setStyleName("errorLabel");
         exampleResultPanel.add(lblSamplePerformance, 0, 0);
         lblSamplePerformance.setSize("763px", "18px");
 
         Label lblPleaseMakeSure = new Label("Please Make sure they're no duplicate Athlete ID. All Invalid Results will be ignored.");
         lblPleaseMakeSure.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-        lblPleaseMakeSure.setStyleName(".errorLabel");
+        lblPleaseMakeSure.setStyleName("errorLabel");
         exampleResultPanel.add(lblPleaseMakeSure, 0, 18);
         lblPleaseMakeSure.setSize("763px", "18px");
 
         this.searchAthletePanel = new AbsolutePanel();
-        this.searchAthletePanel.setStyleName(".panelBorder");
+        this.searchAthletePanel.setStyleName("panelBorder");
         absolutePanel.add(this.searchAthletePanel, 424, 181);
         this.searchAthletePanel.setSize("314px", "367px");
 
         Label searchAthleteTitleLabel = new Label("Search Athlete");
-        searchAthleteTitleLabel.setStyleName(".topLabel");
+        searchAthleteTitleLabel.setStyleName("topLabel");
         searchAthleteTitleLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
         this.searchAthletePanel.add(searchAthleteTitleLabel, 0, 0);
         searchAthleteTitleLabel.setSize("314px", "18px");
@@ -727,7 +727,7 @@ public class EnterResultsForm {
         scrollPanel.setSize("314px", "179px");
 
         this.searchAthleteTable = new CellTable();
-        this.searchAthleteTable.setStyleName(".panelBorder");
+        this.searchAthleteTable.setStyleName("panelBorder");
         scrollPanel.setWidget(this.searchAthleteTable);
         this.searchAthleteTable.setSize("312px", "52px");
         this.searchAthleteTable.setKeyboardSelectionPolicy(HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);

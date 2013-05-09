@@ -96,7 +96,7 @@ public class HomeForm {
     public HomeForm()
     {
         this.rootPanel = RootPanel.get();
-        this.rootPanel.setStyleName(".background");
+        this.rootPanel.setStyleName("background");
         this.layout = new StandardLayoutForm(this.rootPanel, "972px");
 
         homeFormLeaderboardDesign();
@@ -485,7 +485,7 @@ public class HomeForm {
 
     private void createProfileSearchTable() {
         ScrollPanel scrollPanel = new ScrollPanel();
-        scrollPanel.setStyleName(".panelBorder");
+        scrollPanel.setStyleName("panelBorder");
         this.searchAthletePanel.add(scrollPanel, 0, 188);
         scrollPanel.setSize("314px", "159px");
 
@@ -529,7 +529,7 @@ public class HomeForm {
 
     private void createPerformanceHistoryTable() {
         ScrollPanel scrollPanel = new ScrollPanel();
-        scrollPanel.setStyleName(".panelBorder");
+        scrollPanel.setStyleName("panelBorder");
         this.competitionHistoryPanel.add(scrollPanel, 10, 58);
         scrollPanel.setSize("592px", "167px");
 
@@ -585,7 +585,7 @@ public class HomeForm {
 
     private void createMiscSearchAllAthleteTable() {
         ScrollPanel scrollPanel1 = new ScrollPanel();
-        scrollPanel1.setStyleName(".panelBorder");
+        scrollPanel1.setStyleName("panelBorder");
         this.miscAbsolutePanel.add(scrollPanel1, 0, 90);
         scrollPanel1.setSize("313px", "255px");
 
@@ -1185,7 +1185,7 @@ public class HomeForm {
         this.leaderboardEnterButton.setWidth("97px");
 
         this.scrollPanel = new ScrollPanel();
-        this.scrollPanel.setStyleName(".panelBorder");
+        this.scrollPanel.setStyleName("panelBorder");
 
         leaderboardLayoutPanel.add(queryVerticalPanel);
         leaderboardLayoutPanel.setWidgetLeftWidth(queryVerticalPanel, 10.0D, Style.Unit.PX, 197.0D, Style.Unit.PX);
@@ -1204,10 +1204,10 @@ public class HomeForm {
         miscellaneousLayoutPanel.setSize("956px", "386px");
 
         this.miscAbsolutePanel = new AbsolutePanel();
-        this.miscAbsolutePanel.setStyleName(".panelBorder");
+        this.miscAbsolutePanel.setStyleName("panelBorder");
 
         Label lblDisplayAllAthlete = new Label("Display All Athlete");
-        lblDisplayAllAthlete.setStyleName(".topLabel");
+        lblDisplayAllAthlete.setStyleName("topLabel");
         lblDisplayAllAthlete.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
         this.miscAbsolutePanel.add(lblDisplayAllAthlete, 0, 0);
         lblDisplayAllAthlete.setSize("315px", "20px");
@@ -1228,11 +1228,11 @@ public class HomeForm {
         this.miscDisplayButton.setSize("67px", "30px");
 
         AbsolutePanel absolutePanel = new AbsolutePanel();
-        absolutePanel.setStyleName(".panelBorder");
+        absolutePanel.setStyleName("panelBorder");
 
         Label lblNewLabel_1 = new Label("Irish Sport Ananlyser");
         lblNewLabel_1.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-        lblNewLabel_1.setStyleName(".topLabel");
+        lblNewLabel_1.setStyleName("topLabel");
         absolutePanel.add(lblNewLabel_1, 0, 0);
         lblNewLabel_1.setSize("443px", "23px");
 
@@ -1261,14 +1261,14 @@ public class HomeForm {
         profileLayoutPanel.setSize("958px", "433px");
 
         AbsolutePanel fullDetailsPanel = new AbsolutePanel();
-        fullDetailsPanel.setStyleName(".panelBorder");
+        fullDetailsPanel.setStyleName("panelBorder");
 
         VerticalPanel verticalPanel_1 = new VerticalPanel();
         fullDetailsPanel.add(verticalPanel_1);
         verticalPanel_1.setSize("547px", "165px");
 
         Label lblFullDetails = new Label("Full Details");
-        lblFullDetails.setStyleName(".topLabel");
+        lblFullDetails.setStyleName("topLabel");
         lblFullDetails.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
         verticalPanel_1.add(lblFullDetails);
 
@@ -1375,10 +1375,10 @@ public class HomeForm {
         this.btnSubmit.setWidth("86px");
 
         this.competitionHistoryPanel = new AbsolutePanel();
-        this.competitionHistoryPanel.setStyleName(".panelBorder");
+        this.competitionHistoryPanel.setStyleName("panelBorder");
 
         Label lblPerformanceHistory = new Label("Performance History");
-        lblPerformanceHistory.setStyleName(".topLabel");
+        lblPerformanceHistory.setStyleName("topLabel");
         lblPerformanceHistory.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
         this.competitionHistoryPanel.add(lblPerformanceHistory, 0, 0);
         lblPerformanceHistory.setSize("615px", "18px");
@@ -1419,11 +1419,11 @@ public class HomeForm {
         this.goButton.setSize("36px", "30px");
 
         this.searchAthletePanel = new AbsolutePanel();
-        this.searchAthletePanel.setStyleName(".panelBorder");
+        this.searchAthletePanel.setStyleName("panelBorder");
         this.searchAthletePanel.setSize("314px", "347px");
 
         Label lblSearchAthlete = new Label("Search Athlete");
-        lblSearchAthlete.setStyleName(".topLabel");
+        lblSearchAthlete.setStyleName("topLabel");
         lblSearchAthlete.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
         this.searchAthletePanel.add(lblSearchAthlete, 0, 0);
         lblSearchAthlete.setSize("314px", "18px");
