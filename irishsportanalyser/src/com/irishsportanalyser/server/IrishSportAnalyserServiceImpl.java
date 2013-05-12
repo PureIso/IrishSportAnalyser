@@ -14,7 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implements IrishSportAnalyserService {
-    // Implementation of sample interface method
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	// Implementation of sample interface method
     public String addAthlete(Athlete athlete, String clubName)
             throws Exception
     {
@@ -42,18 +47,19 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    public List<Athlete> getAthlete(Long id) throws Exception {
+    @SuppressWarnings("unchecked")
+	public List<Athlete> getAthlete(Long id) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         List<Athlete> returnResult = null;
         try
         {
             Query query = pm.newQuery(Athlete.class, "id == " + id + " ");
 
-            List result = (List)query.execute();
+            List<Athlete> result = (List<Athlete>)query.execute();
             if (result.size() == 0) return null;
 
             returnResult = new ArrayList<Athlete>(result.size());
-            for (Athlete athlete : (List<Athlete>) result)
+            for (Athlete athlete : result)
                 returnResult.add(athlete);
         }
         catch (Exception e)
@@ -66,7 +72,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         return returnResult;
     }
 
-    public List<Athlete> getAthlete(Gender gender) throws Exception {
+    @SuppressWarnings("unchecked")
+	public List<Athlete> getAthlete(Gender gender) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         List<Athlete> returnResult = null;
         try
@@ -74,25 +81,26 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
             Query query = pm.newQuery(Athlete.class, "gender == '" + gender + "'");
             query.setOrdering("name asc");
 
-            List result = (List)query.execute();
+            List<Athlete> result = (List<Athlete>) query.execute();
             if (result.size() == 0) return null;
 
             returnResult = new ArrayList<Athlete>(result.size());
-            for (Athlete athlete : (List<Athlete>) result)
+            for (Athlete athlete : result)
             {
                 returnResult.add(athlete);
             }
         }
         catch (Exception e) {
             throw new Exception(e.getMessage());
-        }
+        } 
         finally {
             pm.close(); } pm.close();
 
         return returnResult;
     }
 
-    public List<Athlete> getAthlete(String name, String surname, Gender gender) throws Exception {
+    @SuppressWarnings("unchecked")
+	public List<Athlete> getAthlete(String name, String surname, Gender gender) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
 
         name = name.toLowerCase();
@@ -114,11 +122,11 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
                 }
             }
 
-            List result = (List)query.execute();
+            List<Athlete> result = (List<Athlete>) query.execute();
             if (result.size() == 0) return null;
 
             returnResult = new ArrayList<Athlete>(result.size());
-            for (Athlete athlete : (List<Athlete>) result) {
+            for (Athlete athlete : result) {
                 returnResult.add(athlete);
             }
         }
@@ -132,7 +140,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         return returnResult;
     }
 
-    public String updateAthlete(Athlete athlete, String clubName) throws Exception {
+    @SuppressWarnings("rawtypes")
+	public String updateAthlete(Athlete athlete, String clubName) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try
         {
@@ -162,7 +171,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    private Long getClubId(Region region, String clubName) throws Exception {
+    @SuppressWarnings("rawtypes")
+	private Long getClubId(Region region, String clubName) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try
         {
@@ -182,7 +192,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    private boolean searchDublicateAthlete(Athlete athlete) throws Exception {
+    @SuppressWarnings("rawtypes")
+	private boolean searchDublicateAthlete(Athlete athlete) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
             Query query = pm.newQuery(Athlete.class,
@@ -223,7 +234,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    private boolean searchDublicateAdmin(Admin admin) throws Exception {
+    @SuppressWarnings("rawtypes")
+	private boolean searchDublicateAdmin(Admin admin) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
             Query query = pm.newQuery(Admin.class, "username == '" + admin.getUsername() + "'");
@@ -239,7 +251,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    public boolean searchAdmin(Admin admin) throws Exception {
+    @SuppressWarnings("rawtypes")
+	public boolean searchAdmin(Admin admin) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
             admin.setUsername(admin.getUsername().toLowerCase());
@@ -277,7 +290,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    private boolean searchDublicateClub(Club club) throws Exception {
+    @SuppressWarnings("rawtypes")
+	private boolean searchDublicateClub(Club club) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
             Query query = pm.newQuery(Club.class, "name == '" + VariousFunctions.escapeHtml(club.getName()) + "' && region =='" + club.getRegion() + "'");
@@ -293,7 +307,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    public List<Club> getClub(Region region) throws Exception {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<Club> getClub(Region region) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
 
         List<Club> returnResult = null;
@@ -318,7 +333,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         return returnResult;
     }
 
-    public String getClubName(Long id) throws Exception {
+    @SuppressWarnings("rawtypes")
+	public String getClubName(Long id) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
 
         String returnResult = null;
@@ -358,7 +374,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    private boolean searchDuplicateCompetition(Competition competition) throws Exception {
+    @SuppressWarnings("rawtypes")
+	private boolean searchDuplicateCompetition(Competition competition) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
             Query query = pm.newQuery(Competition.class, "competitionType == '" + competition.getCompetitionType() + "' && name == '" + competition.getName() +
@@ -376,12 +393,12 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    public List<String> getSeasons(String competitionType) throws Exception {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<String> getSeasons(String competitionType) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
-        System.out.print("Here");
+
         List<String> returnResult = null;
         try {
-            System.out.print("Here 2");
             Query query = pm.newQuery(Competition.class, "competitionType == '" + competitionType + "'");
 
             List result = (List)query.execute();
@@ -402,7 +419,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         return returnResult;
     }
 
-    public List<Region> getRegions(String competitionType, String season) throws Exception {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<Region> getRegions(String competitionType, String season) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
 
         List<Region> returnResult = null;
@@ -427,7 +445,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         return returnResult;
     }
 
-    public List<String> getVenue(String competitionType, String season, Region region) throws Exception {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<String> getVenue(String competitionType, String season, Region region) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
 
         List<String> returnResult = null;
@@ -452,7 +471,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         return returnResult;
     }
 
-    public List<String> getCompetitionName(String competitionType, String season, Region region, String venue) throws Exception
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<String> getCompetitionName(String competitionType, String season, Region region, String venue) throws Exception
     {
         PersistenceManager pm = PMF.get().getPersistenceManager();
 
@@ -478,7 +498,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         return returnResult;
     }
 
-    public List<String> getDate(String competitionType, String season, Region region, String venue, String competitionName) throws Exception
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<String> getDate(String competitionType, String season, Region region, String venue, String competitionName) throws Exception
     {
         PersistenceManager pm = PMF.get().getPersistenceManager();
 
@@ -505,7 +526,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         return returnResult;
     }
 
-    public List<Competition> getCompetitionID(String competitionType, String season, Region region, String venue, String competitionName, String date) throws Exception
+    @SuppressWarnings("unchecked")
+	public List<Competition> getCompetitionID(String competitionType, String season, Region region, String venue, String competitionName, String date) throws Exception
     {
         PersistenceManager pm = PMF.get().getPersistenceManager();
 
@@ -514,11 +536,11 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
             Query query = pm.newQuery(Competition.class, "competitionType == '" + competitionType + "' && season == '" + season + "' && region == '" + region + "'" +
                     " && venue == '" + venue + "' && name == '" + competitionName + "' && date == '" + date + "'");
 
-            List result = (List)query.execute();
+            List<Competition> result = (List<Competition>)query.execute();
             if (result.size() == 0) return null;
             returnResult = new ArrayList<Competition>(result.size());
 
-            for (Competition c : (List<Competition>) result) {
+            for (Competition c : result) {
                 returnResult.add(c);
             }
             return returnResult;
@@ -543,7 +565,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    private boolean searchDublicateCompetitionResult(Result result) throws Exception {
+    @SuppressWarnings("rawtypes")
+	private boolean searchDublicateCompetitionResult(Result result) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
             Query query = pm.newQuery(Result.class, "competitionType == '" + result.getCompetitionType() + "' && competitionId == " + result.getCompetitionId() +
@@ -561,7 +584,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    private void updateAthleteSeasonBest(Result result) throws Exception {
+    @SuppressWarnings("rawtypes")
+	private void updateAthleteSeasonBest(Result result) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try
         {
@@ -621,7 +645,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
 
             Query query = pm.newQuery(Competition.class, "id == " + results.getCompetitionId());
 
-            List competitionResult = (List)query.execute();
+            @SuppressWarnings("rawtypes")
+			List competitionResult = (List)query.execute();
 
             ph.setCompetition(((Competition)competitionResult.get(0)).getName());
             ph.setVenue(((Competition)competitionResult.get(0)).getVenue());
@@ -640,7 +665,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    public List<Result> getCompetitionID(Long athleteId, String competitionType, int season, String event) throws Exception {
+    @SuppressWarnings("unchecked")
+	public List<Result> getCompetitionID(Long athleteId, String competitionType, int season, String event) throws Exception {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         List<Result> returnResult = null;
         try
@@ -660,10 +686,10 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
                 query.setOrdering("performance asc");
             }
 
-            List results = (List)query.execute();
+            List<Result> results = (List<Result>) query.execute();
 
             returnResult = new ArrayList<Result>(results.size());
-            for (Result result : (List<Result>) results) {
+            for (Result result :  results) {
                 returnResult.add(result);
             }
             return returnResult;
@@ -676,7 +702,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         }
     }
 
-    public List<Result> getSeasonsBest(String competitionType, Gender gender, String event, int season)
+    @SuppressWarnings("unchecked")
+	public List<Result> getSeasonsBest(String competitionType, Gender gender, String event, int season)
             throws Exception
     {
         PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -685,11 +712,11 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
             Query query = pm.newQuery(Result.class, "competitionType == '" + competitionType + "' && " +
                     "gender == '" + gender + "' && event == '" + event + "' && season == " + season + " && seasonsBest == true");
 
-            List allSeasonsBest = (List)query.execute();
+            List<Result> allSeasonsBest = (List<Result>) query.execute();
             if (allSeasonsBest.size() == 0) return null;
 
             returnSeasonBest = new ArrayList<Result>(allSeasonsBest.size());
-            for (Result result : (List<Result>)allSeasonsBest)
+            for (Result result : allSeasonsBest)
                 returnSeasonBest.add(result);
         }
         catch (Exception localException) {
@@ -700,7 +727,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         return returnSeasonBest;
     }
 
-    public List<String> getAthlete(Result result, Region region, String ageGroupQuery) {
+    @SuppressWarnings("rawtypes")
+	public List<String> getAthlete(Result result, Region region, String ageGroupQuery) {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         List<String> returnResult = null;
         try
@@ -729,7 +757,8 @@ public class IrishSportAnalyserServiceImpl extends RemoteServiceServlet implemen
         return returnResult;
     }
 
-    public List<String> getRankCompetitionDetails(List<String> result) {
+    @SuppressWarnings("rawtypes")
+	public List<String> getRankCompetitionDetails(List<String> result) {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         List<String> returnResult = null;
         try {

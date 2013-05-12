@@ -136,7 +136,7 @@ public class AddAdministrator
 
     private void addAdmin(Admin admin) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<String>() {
+        AsyncCallback<String> callback = new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 try {
                     AddAdministrator.this.enterButton.setEnabled(true);

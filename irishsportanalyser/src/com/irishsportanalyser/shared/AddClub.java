@@ -128,7 +128,7 @@ public class AddClub
 
     private void addClub(Club club) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<String>() {
+        AsyncCallback<String> callback = new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 try {
                     AddClub.this.enterButton.setEnabled(true);

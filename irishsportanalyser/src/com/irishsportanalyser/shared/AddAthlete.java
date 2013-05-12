@@ -119,7 +119,7 @@ public class AddAthlete
 
     private void addAthlete(Athlete athlete, String clubName) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<String>() {
+        AsyncCallback<String> callback = new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 try {
                     AddAthlete.this.submitButton.setEnabled(true);
@@ -241,7 +241,7 @@ public class AddAthlete
 
     private void getClub(Region region) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<Club>>() {
+        AsyncCallback<List<Club>> callback = new AsyncCallback<List<Club>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;

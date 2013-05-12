@@ -726,13 +726,13 @@ public class EnterResultsForm {
         this.searchAthletePanel.add(scrollPanel, 0, 188);
         scrollPanel.setSize("314px", "179px");
 
-        this.searchAthleteTable = new CellTable();
+        this.searchAthleteTable = new CellTable<Athlete>();
         this.searchAthleteTable.setStyleName("panelBorder");
         scrollPanel.setWidget(this.searchAthleteTable);
         this.searchAthleteTable.setSize("312px", "52px");
         this.searchAthleteTable.setKeyboardSelectionPolicy(HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);
 
-        Column rankColumn = new Column<Athlete,Number>(new NumberCell()) {
+        Column<Athlete,Number> rankColumn = new Column<Athlete,Number>(new NumberCell()) {
             public Number getValue(Athlete athlete) {
                 return athlete.getId();
             }
@@ -741,7 +741,7 @@ public class EnterResultsForm {
         this.searchAthleteTable.addColumn(rankColumn, "ID");
         this.searchAthleteTable.setColumnWidth(rankColumn, "54px");
 
-        TextColumn performanceColumn = new TextColumn<Athlete>() {
+        TextColumn<Athlete> performanceColumn = new TextColumn<Athlete>() {
             public String getValue(Athlete athlete) {
                 return athlete.getName();
             }
@@ -749,7 +749,7 @@ public class EnterResultsForm {
         performanceColumn.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
         this.searchAthleteTable.addColumn(performanceColumn, "Name");
 
-        TextColumn surnameColumn = new TextColumn<Athlete>() {
+        TextColumn<Athlete> surnameColumn = new TextColumn<Athlete>() {
             public String getValue(Athlete object) {
                 return object.getSurname();
             }
@@ -757,10 +757,10 @@ public class EnterResultsForm {
         surnameColumn.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
         this.searchAthleteTable.addColumn(surnameColumn, "Surname");
 
-        SingleSelectionModel selectionModel = new SingleSelectionModel();
+        SingleSelectionModel<Athlete> selectionModel = new SingleSelectionModel<Athlete>();
         this.searchAthleteTable.setSelectionModel(selectionModel);
 
-        List athlete = Arrays.asList(new Athlete[]{new Athlete(Gender.Male, "Empty", "Empty", Region.Leinster, Long.valueOf(Long.parseLong("0")))});
+        List<Athlete> athlete = Arrays.asList(new Athlete[]{new Athlete(Gender.Male, "Empty", "Empty", Region.Leinster, Long.valueOf(Long.parseLong("0")))});
         this.searchAthleteTable.setRowCount(athlete.size(), true);
         this.searchAthleteTable.setRowData(0, athlete);
     }
@@ -786,7 +786,7 @@ public class EnterResultsForm {
         this.searchAthleteNameTextBox.setText(null);
         this.searchAthleteSurnameTextBox.setText(null);
 
-        List athlete = Arrays.asList(new Athlete[] { new Athlete(Gender.Male, "Empty", "Empty", Region.Leinster, Long.valueOf(Long.parseLong("0"))) });
+        List<Athlete> athlete = Arrays.asList(new Athlete[] { new Athlete(Gender.Male, "Empty", "Empty", Region.Leinster, Long.valueOf(Long.parseLong("0"))) });
         this.searchAthleteTable.setRowCount(athlete.size(), true);
         this.searchAthleteTable.setRowData(0, athlete);
     }
@@ -933,7 +933,7 @@ public class EnterResultsForm {
     private void getAthlete(Long id)
     {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<Athlete> >() {
+        AsyncCallback<List<Athlete>> callback = new AsyncCallback<List<Athlete> >() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -973,7 +973,7 @@ public class EnterResultsForm {
 
     private void getAthlete(String name, String surname, Gender gender) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<Athlete> >() {
+        AsyncCallback<List<Athlete>> callback = new AsyncCallback<List<Athlete> >() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -1013,7 +1013,7 @@ public class EnterResultsForm {
 
     private void validateAthlete(Long id, final Result result, final int index) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<Athlete> >() {
+        AsyncCallback<List<Athlete>> callback = new AsyncCallback<List<Athlete> >() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -1077,7 +1077,7 @@ public class EnterResultsForm {
 
     private void getSeasons(String competitionType) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<String>>() {
+        AsyncCallback<List<String>> callback = new AsyncCallback<List<String>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -1110,7 +1110,7 @@ public class EnterResultsForm {
 
     private void getRegions(String competitionType, String season) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<Region>>() {
+        AsyncCallback<List<Region>> callback = new AsyncCallback<List<Region>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -1141,7 +1141,7 @@ public class EnterResultsForm {
 
     private void getVenue(String competitionType, String season, Region region) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<String>>() {
+        AsyncCallback<List<String>> callback = new AsyncCallback<List<String>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -1172,7 +1172,7 @@ public class EnterResultsForm {
 
     private void getVenue(String competitionType, String season, Region region, String venue) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<String>>() {
+        AsyncCallback<List<String>> callback = new AsyncCallback<List<String>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -1203,7 +1203,7 @@ public class EnterResultsForm {
 
     private void getDate(String competitionType, String season, Region region, String venue, String competitionName) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<String>>() {
+        AsyncCallback<List<String>> callback = new AsyncCallback<List<String>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -1234,7 +1234,7 @@ public class EnterResultsForm {
 
     private void getCompetitionID(String competitionType, String season, Region region, String venue, String competitionName, String date) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<Competition>>() {
+        AsyncCallback<List<Competition>> callback = new AsyncCallback<List<Competition>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -1260,7 +1260,7 @@ public class EnterResultsForm {
 
     private void enterResult(Result result) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<Void>() {
+        AsyncCallback<Void> callback = new AsyncCallback<Void>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;

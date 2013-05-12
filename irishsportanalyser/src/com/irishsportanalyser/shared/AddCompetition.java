@@ -173,7 +173,7 @@ public class AddCompetition
 
     private void addCompetition(Competition competition) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<String>() {
+        AsyncCallback<String> callback = new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 try {
                     AddCompetition.this.enterButton.setEnabled(true);

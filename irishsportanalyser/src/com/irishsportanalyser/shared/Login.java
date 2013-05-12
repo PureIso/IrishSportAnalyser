@@ -129,7 +129,7 @@ public class Login
 
     private void loginAdmin(Admin admin) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<Boolean>() {
+        AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
             public void onFailure(Throwable caught) {
                 try {
                     Login.this.statusLabel.setText("");

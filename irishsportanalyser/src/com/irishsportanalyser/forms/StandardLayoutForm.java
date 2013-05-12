@@ -18,6 +18,7 @@ public class StandardLayoutForm {
     private static MenuItem addCompetitionMenuItem;
     private static MenuItem enterResultsMenuItem;
     private static MenuItem addAdminMenuItem;
+    private static MenuBar mainMenuBar;
     private static boolean login;
     private RootPanel mainPanel;
 
@@ -29,7 +30,7 @@ public class StandardLayoutForm {
         this.mainPanel.add(googleCodeImage, 0, 0);
         googleCodeImage.setSize("526px", "115px");
 
-        MenuBar mainMenuBar = new MenuBar(false);
+        mainMenuBar = new MenuBar(false);
         this.mainPanel.add(mainMenuBar, 0, 115);
         mainMenuBar.setSize(weight, "30px");
         MenuBar menuBar = new MenuBar(true);

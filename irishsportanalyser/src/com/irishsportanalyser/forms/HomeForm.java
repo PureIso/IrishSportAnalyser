@@ -189,7 +189,7 @@ public class HomeForm {
                 try {
                     if (!VariousFunctions.isNumeric(HomeForm.this.searchAthleteIdTextBox.getText()))
                         throw new Exception("Value is not numeric!");
-                    Gender gender = HomeForm.this.performanceFemaleRadioButton.getValue().booleanValue() ? Gender.Female : Gender.Male;
+                    //Gender gender = HomeForm.this.performanceFemaleRadioButton.getValue().booleanValue() ? Gender.Female : Gender.Male;
                     long id = Long.parseLong(HomeForm.this.searchAthleteIdTextBox.getText());
                     HomeForm.this.searchAthleteIdTextBox.setValue(null);
                     HomeForm.this.getAthlete(Long.valueOf(id));
@@ -207,7 +207,7 @@ public class HomeForm {
                     try {
                         if (!VariousFunctions.isNumeric(HomeForm.this.searchAthleteIdTextBox.getText()))
                             throw new Exception("Value is not numeric!");
-                        Gender gender = HomeForm.this.performanceFemaleRadioButton.getValue().booleanValue() ? Gender.Female : Gender.Male;
+                        //Gender gender = HomeForm.this.performanceFemaleRadioButton.getValue().booleanValue() ? Gender.Female : Gender.Male;
                         long id = Long.parseLong(HomeForm.this.searchAthleteIdTextBox.getText());
                         HomeForm.this.searchAthleteIdTextBox.setValue(null);
                         HomeForm.this.getAthlete(Long.valueOf(id));
@@ -398,11 +398,11 @@ public class HomeForm {
         this.genderProfileTextBox.setValue(null);
         this.regionProfileComboBox.clear();
 
-        List performanceHistory = Arrays.asList(new PerformanceHistory[] { new PerformanceHistory(
+        List<PerformanceHistory> performanceHistory = Arrays.asList(new PerformanceHistory[] { new PerformanceHistory(
                 "Empty", "Empty", "Empty") });
         this.athletePerformanceHistoryTable.setRowCount(performanceHistory.size(), true);
         this.athletePerformanceHistoryTable.setRowData(0, performanceHistory);
-        List athlete = Arrays.asList(new Athlete[] { new Athlete(Gender.Male, "Empty", "Empty", Region.Leinster, Long.valueOf(Long.parseLong("0"))) });
+        List<Athlete> athlete = Arrays.asList(new Athlete[] { new Athlete(Gender.Male, "Empty", "Empty", Region.Leinster, Long.valueOf(Long.parseLong("0"))) });
         this.searchAthleteTable.setRowCount(athlete.size(), true);
         this.searchAthleteTable.setRowData(0, athlete);
         this.nameProfileTextBox.setEnabled(false);
@@ -420,7 +420,7 @@ public class HomeForm {
 
     private void updateAthlete(Athlete athlete, String clubName) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<String>() {
+        AsyncCallback<String> callback = new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -440,7 +440,7 @@ public class HomeForm {
 
     private void loadClub(Region region, final String currentClub) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<Club>>() {
+        AsyncCallback<List<Club>> callback = new AsyncCallback<List<Club>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -489,12 +489,12 @@ public class HomeForm {
         this.searchAthletePanel.add(scrollPanel, 0, 188);
         scrollPanel.setSize("314px", "159px");
 
-        this.searchAthleteTable = new CellTable();
+        this.searchAthleteTable = new CellTable<Athlete>();
         scrollPanel.setWidget(this.searchAthleteTable);
         this.searchAthleteTable.setSize("312px", "55px");
         this.searchAthleteTable.setKeyboardSelectionPolicy(HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);
 
-        Column rankColumn = new Column<Athlete,Number>(new NumberCell()) {
+        Column<Athlete,Number> rankColumn = new Column<Athlete,Number>(new NumberCell()) {
             public Number getValue(Athlete athlete) {
                 return athlete.getId();
             }
@@ -519,10 +519,10 @@ public class HomeForm {
         surnameColumn.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
         this.searchAthleteTable.addColumn(surnameColumn, "Surname");
 
-        this.selectionModel = new SingleSelectionModel();
+        this.selectionModel = new SingleSelectionModel<Athlete>();
         this.searchAthleteTable.setSelectionModel(this.selectionModel);
 
-        List athlete = Arrays.asList(new Athlete[] { new Athlete(Gender.Male, "Empty", "Empty", Region.Leinster, Long.valueOf(Long.parseLong("0"))) });
+        List<Athlete> athlete = Arrays.asList(new Athlete[] { new Athlete(Gender.Male, "Empty", "Empty", Region.Leinster, Long.valueOf(Long.parseLong("0"))) });
         this.searchAthleteTable.setRowCount(athlete.size(), true);
         this.searchAthleteTable.setRowData(0, athlete);
     }
@@ -533,7 +533,7 @@ public class HomeForm {
         this.competitionHistoryPanel.add(scrollPanel, 10, 58);
         scrollPanel.setSize("592px", "167px");
 
-        this.athletePerformanceHistoryTable = new CellTable();
+        this.athletePerformanceHistoryTable = new CellTable<PerformanceHistory>();
         scrollPanel.setWidget(this.athletePerformanceHistoryTable);
         this.athletePerformanceHistoryTable.setSize("100%", "51px");
         this.athletePerformanceHistoryTable.setKeyboardSelectionPolicy(HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);
@@ -574,10 +574,10 @@ public class HomeForm {
         this.athletePerformanceHistoryTable.addColumn(dateColumn, "Date");
         this.athletePerformanceHistoryTable.setColumnWidth(dateColumn, "154px");
 
-        SingleSelectionModel<PerformanceHistory> selectionModelPHistory = new SingleSelectionModel();
+        SingleSelectionModel<PerformanceHistory> selectionModelPHistory = new SingleSelectionModel<PerformanceHistory>();
         this.athletePerformanceHistoryTable.setSelectionModel(selectionModelPHistory);
 
-        List performanceHistory = Arrays.asList(new PerformanceHistory[] { new PerformanceHistory(
+        List<PerformanceHistory> performanceHistory = Arrays.asList(new PerformanceHistory[] { new PerformanceHistory(
                 "Empty", "Empty", "Empty") });
         this.athletePerformanceHistoryTable.setRowCount(performanceHistory.size(), true);
         this.athletePerformanceHistoryTable.setRowData(0, performanceHistory);
@@ -589,12 +589,12 @@ public class HomeForm {
         this.miscAbsolutePanel.add(scrollPanel1, 0, 90);
         scrollPanel1.setSize("313px", "255px");
 
-        this.miscAthleteTable = new CellTable();
+        this.miscAthleteTable = new CellTable<Athlete>();
         this.miscAthleteTable.setKeyboardSelectionPolicy(HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);
         scrollPanel1.setWidget(this.miscAthleteTable);
         this.miscAthleteTable.setSize("313px", "50px");
 
-        Column column = new Column<Athlete,Number>(new NumberCell()) {
+        Column<Athlete,Number> column = new Column<Athlete,Number>(new NumberCell()) {
             public Number getValue(Athlete athlete) {
                 return athlete.getId();
             }
@@ -602,7 +602,7 @@ public class HomeForm {
         this.miscAthleteTable.addColumn(column, "ID");
         this.miscAthleteTable.setColumnWidth(column, "90px");
 
-        TextColumn textColumn = new TextColumn<Athlete>() {
+        TextColumn<Athlete> textColumn = new TextColumn<Athlete>() {
             public String getValue(Athlete athlete) {
                 return athlete.getName();
             }
@@ -610,28 +610,28 @@ public class HomeForm {
         this.miscAthleteTable.addColumn(textColumn, "Name");
         this.miscAthleteTable.setColumnWidth(textColumn, "95px");
 
-        TextColumn textColumn_1 = new TextColumn<Athlete>() {
+        TextColumn<Athlete> textColumn_1 = new TextColumn<Athlete>() {
             public String getValue(Athlete athlete) {
                 return athlete.getSurname();
             }
         };
         this.miscAthleteTable.addColumn(textColumn_1, "Surname");
 
-        SingleSelectionModel<Athlete> miscSelectionModel = new SingleSelectionModel();
+        SingleSelectionModel<Athlete> miscSelectionModel = new SingleSelectionModel<Athlete>();
         this.miscAthleteTable.setSelectionModel(miscSelectionModel);
 
-        List athlete = Arrays.asList(new Athlete[]{new Athlete(Gender.Male, "Empty", "Empty", Region.Leinster, Long.valueOf(Long.parseLong("0")))});
+        List<Athlete> athlete = Arrays.asList(new Athlete[]{new Athlete(Gender.Male, "Empty", "Empty", Region.Leinster, Long.valueOf(Long.parseLong("0")))});
         this.miscAthleteTable.setRowCount(athlete.size(), true);
         this.miscAthleteTable.setRowData(0, athlete);
     }
 
     private void createRankTable() {
-        this.leaderboardRankTable = new CellTable();
+        this.leaderboardRankTable = new CellTable<List<String>>();
         this.scrollPanel.setWidget(this.leaderboardRankTable);
         this.leaderboardRankTable.setSize("100%", "53px");
         this.leaderboardRankTable.setKeyboardSelectionPolicy(HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);
 
-        Column rankColumn = new Column<List<String>,Number>(new NumberCell()) {
+        Column<List<String>,Number> rankColumn = new Column<List<String>,Number>(new NumberCell()) {
             public Number getValue(List<String> object) {
                 return Integer.valueOf(Integer.parseInt((String)object.get(0)));
             }
@@ -640,7 +640,7 @@ public class HomeForm {
         this.leaderboardRankTable.addColumn(rankColumn, "Rank");
         this.leaderboardRankTable.setColumnWidth(rankColumn, "64px");
 
-        TextColumn performanceColumn = new TextColumn<List<String>>() {
+        TextColumn<List<String>> performanceColumn = new TextColumn<List<String>>() {
             public String getValue(List<String> object) {
                 return (String)object.get(1);
             }
@@ -649,7 +649,7 @@ public class HomeForm {
         this.leaderboardRankTable.addColumn(performanceColumn, "Perf.");
         this.leaderboardRankTable.setColumnWidth(performanceColumn, "80px");
 
-        TextColumn nameColumn = new TextColumn<List<String>>() {
+        TextColumn<List<String>> nameColumn = new TextColumn<List<String>>() {
             public String getValue(List<String> object) {
                 return (String)object.get(2);
             }
@@ -658,7 +658,7 @@ public class HomeForm {
         this.leaderboardRankTable.addColumn(nameColumn, "Name");
         this.leaderboardRankTable.setColumnWidth(nameColumn, "96px");
 
-        TextColumn surnameColumn = new TextColumn<List<String>>()
+        TextColumn<List<String>> surnameColumn = new TextColumn<List<String>>()
         {
             public String getValue(List<String> object) {
                 return (String)object.get(3);
@@ -668,7 +668,7 @@ public class HomeForm {
         this.leaderboardRankTable.addColumn(surnameColumn, "Surname");
         this.leaderboardRankTable.setColumnWidth(surnameColumn, "97px");
 
-        TextColumn dateColumn = new TextColumn<List<String>>() {
+        TextColumn<List<String>> dateColumn = new TextColumn<List<String>>() {
             public String getValue(List<String> object) {
                 return (String)object.get(4);
             }
@@ -677,7 +677,7 @@ public class HomeForm {
         this.leaderboardRankTable.addColumn(dateColumn, "Date");
         this.leaderboardRankTable.setColumnWidth(dateColumn, "147px");
 
-        TextColumn venueColumn = new TextColumn<List<String>>() {
+        TextColumn<List<String>> venueColumn = new TextColumn<List<String>>() {
             public String getValue(List<String> object) {
                 return (String)object.get(5);
             }
@@ -685,7 +685,7 @@ public class HomeForm {
         venueColumn.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
         this.leaderboardRankTable.addColumn(venueColumn, "Venue");
 
-        TextColumn competitionColumn = new TextColumn<List<String>>() {
+        TextColumn<List<String>> competitionColumn = new TextColumn<List<String>>() {
             public String getValue(List<String> object) {
                 return (String)object.get(6);
             }
@@ -693,10 +693,10 @@ public class HomeForm {
         competitionColumn.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
         this.leaderboardRankTable.addColumn(competitionColumn, "Competition");
 
-        SingleSelectionModel selectionModel = new SingleSelectionModel();
+        SingleSelectionModel<List<String>> selectionModel = new SingleSelectionModel<List<String>> ();
         this.leaderboardRankTable.setSelectionModel(selectionModel);
 
-        List data = new ArrayList(7);
+        List<String> data = new ArrayList<String>(7);
         data.add("0");
         data.add("Empty");
         data.add("Empty");
@@ -705,7 +705,7 @@ public class HomeForm {
         data.add("Empty");
         data.add("Empty");
 
-        List leaderboard = new ArrayList(1);
+        List<List<String>> leaderboard = new ArrayList<List<String>>(1);
         leaderboard.add(data);
 
         this.leaderboardRankTable.setRowCount(leaderboard.size(), true);
@@ -714,7 +714,7 @@ public class HomeForm {
 
     private void getAthlete(Gender gender) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<Athlete>>() {
+        AsyncCallback<List<Athlete>> callback = new AsyncCallback<List<Athlete>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -761,7 +761,7 @@ public class HomeForm {
 
     private void getAthlete(Long id) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<Athlete>>() {
+        AsyncCallback<List<Athlete>> callback = new AsyncCallback<List<Athlete>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -809,7 +809,7 @@ public class HomeForm {
 
     private void getAthlete(String name, String surname, Gender gender) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<Athlete>>() {
+        AsyncCallback<List<Athlete>> callback = new AsyncCallback<List<Athlete>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -849,7 +849,7 @@ public class HomeForm {
 
     private void getPerformanceHistory(Result result) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<PerformanceHistory>>() {
+        AsyncCallback<List<PerformanceHistory>> callback = new AsyncCallback<List<PerformanceHistory>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -885,7 +885,7 @@ public class HomeForm {
 
     private void getPerformanceHistoryDetails(Long athleteId, String competitionType, int season, String event) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<Result>>() {
+        AsyncCallback<List<Result>> callback = new AsyncCallback<List<Result>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -901,7 +901,7 @@ public class HomeForm {
             public void onSuccess(List<Result> performanceHistory)
             {
                 try {
-                    HomeForm.this.totalPerformanceHistoryData = new ArrayList(performanceHistory.size());
+                    HomeForm.this.totalPerformanceHistoryData = new ArrayList<PerformanceHistory>(performanceHistory.size());
                     HomeForm.this.totalWork = performanceHistory.size();
                     HomeForm.this.workCount = 0;
 
@@ -923,7 +923,7 @@ public class HomeForm {
 
     private void getClubName(Long id) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<String>() {
+        AsyncCallback<String> callback = new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -949,7 +949,7 @@ public class HomeForm {
 
     private void getSeasons(String competitionType) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = (IrishSportAnalyserServiceAsync)GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<String>>() {
+        AsyncCallback<List<String>> callback = new AsyncCallback<List<String>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -986,7 +986,7 @@ public class HomeForm {
 
     void getLeaderboardResults(String competitionType, final Region region, Gender gender, final String event, int season, final String ageGroupQuery) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<Result>>() {
+        AsyncCallback<List<Result>> callback = new AsyncCallback<List<Result>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -1006,7 +1006,7 @@ public class HomeForm {
                     HomeForm.this.seasonBestCurrentCount = 0;
                     if (allSeasonsBest != null) {
                         HomeForm.this.seasonBestCount = allSeasonsBest.size();
-                        HomeForm.this.rankedAthletes = new ArrayList();
+                        HomeForm.this.rankedAthletes = new ArrayList<List<String>>();
                         for (Result result : allSeasonsBest)
                             HomeForm.this.getAthlete(result, region, ageGroupQuery, event);
                     }
@@ -1023,7 +1023,7 @@ public class HomeForm {
 
     private void getAthlete(Result result, Region region, String ageGroupQuery, final String event) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<String>>() {
+        AsyncCallback<List<String>> callback = new AsyncCallback<List<String>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;
@@ -1042,8 +1042,8 @@ public class HomeForm {
                     if (result != null) {
                         HomeForm.this.rankedAthletes.add(result);
                         if (HomeForm.this.seasonBestCurrentCount == HomeForm.this.seasonBestCount) {
-                            HomeForm.this.finalRankingList = new ArrayList(HomeForm.this.rankedAthletes.size());
-                            for (List rankedAthlete : HomeForm.this.rankedAthletes)
+                            HomeForm.this.finalRankingList = new ArrayList<List<String>>(HomeForm.this.rankedAthletes.size());
+                            for (List<String> rankedAthlete : HomeForm.this.rankedAthletes)
                             {
                                 rankedAthlete.set(2, ((String)rankedAthlete.get(2)).substring(0, 1).toUpperCase()
                                         .concat(((String)rankedAthlete.get(2)).substring(1).toLowerCase()));
@@ -1063,7 +1063,7 @@ public class HomeForm {
 
     private void getRankCompetitionDetails(List<String> rankedAthletes, final String event) {
         IrishSportAnalyserServiceAsync IrishSportAnalyserService = GWT.create(IrishSportAnalyserService.class);
-        AsyncCallback callback = new AsyncCallback<List<String>>() {
+        AsyncCallback<List<String>> callback = new AsyncCallback<List<String>>() {
             public void onFailure(Throwable caught) {
                 try {
                     throw caught;

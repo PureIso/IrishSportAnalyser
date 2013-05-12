@@ -235,7 +235,8 @@ public class VariousFunctions
         throw new Exception("Invalid String region!");
     }
 
-    public static List<List<String>> CollectionSort(List<List<String>> collection, String event)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static List<List<String>> CollectionSort(List<List<String>> collection, String event)
             throws Exception
     {
         int indexRemove = 0;
@@ -295,7 +296,6 @@ public class VariousFunctions
         catch (Exception e) {
             throw new Exception(e.getMessage());
         }
-        List currentSmallest;
         return sortedList;
     }
 }
