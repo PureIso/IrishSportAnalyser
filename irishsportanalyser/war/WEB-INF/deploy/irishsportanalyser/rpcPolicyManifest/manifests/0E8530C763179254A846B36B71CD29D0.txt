@@ -1,2 +1,0 @@
-serviceClass: com.irishsportanalyser.client.IrishSportAnalyserService
-path: 1770489B5AE0F76793DB7D5EA689F5C2.gwt.rpc
