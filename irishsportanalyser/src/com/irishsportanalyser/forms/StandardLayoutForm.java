@@ -26,7 +26,7 @@ public class StandardLayoutForm {
     {
         this.mainPanel = mainRootPanel;
         this.mainPanel = RootPanel.get();
-        Image googleCodeImage = new Image("img/P3.png");
+        Image googleCodeImage = new Image("P3.png");
         this.mainPanel.add(googleCodeImage, 0, 0);
         googleCodeImage.setSize("526px", "115px");
 
@@ -45,7 +45,7 @@ public class StandardLayoutForm {
         });
         menuBar.addItem(adminMenuItem);
 
-        addAdminMenuItem = new MenuItem("Add Administrator", false, new Command() {
+        addAdminMenuItem = new MenuItem("Add Administrator", true, new Command() {
             public void execute() {
                 new AddAdministrator();
             }
@@ -92,7 +92,8 @@ public class StandardLayoutForm {
         addClubMenuItem.setEnabled(false);
         addCompetitionMenuItem.setEnabled(false);
         enterResultsMenuItem.setEnabled(false);
-        addAdminMenuItem.setEnabled(false);
+        //addAdminMenuItem.setEnabled(false);
+        addAdminMenuItem.setEnabled(true);
     }
 
     public MenuItem enterResultsMenuItem()

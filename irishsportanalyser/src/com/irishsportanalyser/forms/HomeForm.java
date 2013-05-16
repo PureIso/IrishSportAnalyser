@@ -9,7 +9,7 @@ import com.irishsportanalyser.enums.Gender;
 import com.irishsportanalyser.enums.Region;
 import com.irishsportanalyser.shared.*;
 import com.google.gwt.cell.client.NumberCell;
-import com.google.gwt.core.shared.GWT;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -1240,7 +1240,7 @@ public class HomeForm {
         htmlNewHtml.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
         absolutePanel.add(htmlNewHtml, 0, 25);
 
-        Image image = new Image("img/appengine-silver-120x30.gif");
+        Image image = new Image("appengine-silver-120x30.gif");
         absolutePanel.add(image, 166, 319);
         image.setSize("120px", "30px");
 

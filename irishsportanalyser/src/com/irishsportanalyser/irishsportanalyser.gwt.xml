@@ -26,7 +26,6 @@
     <source path="entities"/>
     <source path="enums"/>
     <source path="forms"/>
-    <source path="img"/>
     <source path="server"/>
     <source path="shared"/>
 
