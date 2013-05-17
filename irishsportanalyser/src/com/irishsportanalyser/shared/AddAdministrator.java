@@ -33,6 +33,7 @@ public class AddAdministrator
     private Button closeButton;
     private TextBox userNameTextBox;
     private PasswordTextBox passwordTextBox;
+    private PasswordTextBox passwordTextBoxTwo;
 
     public AddAdministrator()
     {
@@ -55,7 +56,7 @@ public class AddAdministrator
                         throw new Exception("Name is too long");
                     if (VariousFunctions.isNull(AddAdministrator.this.passwordTextBox.getText()))
                         throw new Exception("Password is null or Invalid!");
-                    if (!AddAdministrator.this.passwordTextBox.getText().equals(AddAdministrator.this.userNameTextBox.getText())) {
+                    if (!AddAdministrator.this.passwordTextBox.getText().equals(AddAdministrator.this.passwordTextBoxTwo.getText())) {
                         throw new Exception("The two passwords are not identical!");
                     }
 
@@ -123,7 +124,7 @@ public class AddAdministrator
 
         this.dialog.setWidget(absolutePanel);
 
-        PasswordTextBox passwordTextBoxTwo = new PasswordTextBox();
+        passwordTextBoxTwo = new PasswordTextBox();
         absolutePanel.add(passwordTextBoxTwo, 109, 80);
         passwordTextBoxTwo.setSize("159px", "18px");
 

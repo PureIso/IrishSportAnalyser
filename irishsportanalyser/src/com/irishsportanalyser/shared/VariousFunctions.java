@@ -158,7 +158,7 @@ public class VariousFunctions
         dialogBox.center();
         closeButton.setFocus(true);
 
-        Image image = new Image("img/information.png");
+        Image image = new Image("information.jpg");
         dialogVPanel.add(image, 0, 0);
         image.setSize("65px", "57px");
 
@@ -197,7 +197,7 @@ public class VariousFunctions
         dialogBox.center();
         closeButton.setFocus(true);
 
-        Image image = new Image("img/error.png");
+        Image image = new Image("error.png");
         dialogVPanel.add(image, 0, 0);
         image.setSize("65px", "57px");
 
